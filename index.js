@@ -1,23 +1,8 @@
 const { Connection, Request } = require("tedious");
 const types = require('tedious').TYPES;
-require('dotenv').config()
+const config = require('./configuration');
 
 const isProduction = process.env.NODE_ENV === 'production'
-
-const config = {
-  authentication: {
-    options: {
-      userName: process.env.DB_USER,
-      password: process.env.DB_PASSWORD 
-    },
-    type: "default"
-  },
-  server: process.env.DB_HOST,
-  options: {
-    database: process.env.DB_DATABASE,
-    encrypt: true
-  }
-};
 
 const connection = new Connection(config);
 
@@ -25,7 +10,7 @@ connection.on("connect", err => {
   if (err) {
     console.error(err.message);
   } else {
-    console.log('CONNECTED');
+    console.log('DB CONNECTED');
     callProcedure();
   }
 });
