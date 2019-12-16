@@ -1,5 +1,5 @@
 const getDBResponseOrError = (error, data, callback) => {
-    error ? callback(error, false) : callback(null, data);
-};
+  error ? callback(error, false) : callback(null, data)
+}
 
-module.exports = getDBResponseOrError;
+module.exports = getDBResponseOrError

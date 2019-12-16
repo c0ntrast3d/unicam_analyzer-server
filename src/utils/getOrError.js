@@ -1,5 +1,5 @@
 const getOrError = (data, error) => {
-    return error ? error : data;
-};
+  return error ? error : data
+}
 
-module.exports = getOrError;
+module.exports = getOrError

@@ -1,37 +1,27 @@
-const getResponse = require('../utils/getOrError');
-const procedures = require('../db/procedures');
+const getResponse = require('../utils/getOrError')
+const procedures = require('../db/procedures')
 
-const TYPES = require('tedious').TYPES;
+const TYPES = require('tedious').TYPES
 
 const ProfessorDataRepository = (dbFunctions) => {
-    const getProfessorData = (req, res) => {
-        let params = [
-            {
-                name: 'MATR',
-                type: TYPES.VarChar,
-                val: req.query.id
-            },
-            {
-                name: 'DaAnnoP',
-                type: TYPES.Int,
-                val: req.query.from
-            },
-            {
-                name: 'AAnnoP',
-                type: TYPES.Int,
-                val: req.query.to
-            }
-        ];
-        dbFunctions.callProcedure(
-            procedures.GET_PROFESSOR_DATA,
-            params,
-            function (error, data) {
-                return res.json(getResponse(data, error));
-            }
-        );
-    };
+  const getProfessorData = (req, res) => {
+    const { id, from, to } = req.query
+    const { VarChar, Int } = TYPES
+    let params = [
+      { name: 'MATR', type: VarChar, val: id },
+      { name: 'DaAnnoP', type: Int, val: from },
+      { name: 'AAnnoP', type: Int, val: to }
+    ]
+    dbFunctions.callProcedure(
+      procedures.GET_PROFESSOR_DATA,
+      params,
+      (error, data) => {
+        return res.json(getResponse(data, error))
+      }
+    )
+  }
 
-    return {getProfessorData};
-};
+  return { getProfessorData }
+}
 
-module.exports = ProfessorDataRepository;
+module.exports = ProfessorDataRepository
