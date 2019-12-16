@@ -4,7 +4,7 @@ const createRouter = require('./routes/createRouter');
 
 const server = express();
 
-const port = process.env.port || 3300;
+const port = process.env.PORT || 3300;
 
 server.listen(port, () => {
     console.log(`Server listening on port ${port} ...`);
