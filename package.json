@@ -2,17 +2,20 @@
   "name": "unicam_analyzer-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./src/server.js",
   "scripts": {
-    "start": "node index.js",
-    "start:dev": "nodemon index.js",
+    "start": "node ./src/server.js",
+    "start:dev": "nodemon ./src/server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express4-tedious": "^0.3.0",
     "tedious": "^6.6.2"
   },
   "engines": {
