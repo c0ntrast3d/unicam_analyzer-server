@@ -1,16 +1,15 @@
 const Request = require('tedious').Request;
 const connection = require('./connection');
-const sendDbResponse = require('./utils/sendResponse');
-const toJSON = require('./utils/toJSON');
+const sendDbResponse = require('./utils/dbResponse');
+const toJSON = require('./utils/rowToJSON');
 
 const callProcedure = (query, params, callback) => {
-    console.log('\x1b[36m%s\x1b[0m', `callProcedure() :: query - "${query}"`);
     let data = [];
-    let dataset = [];
+    let dataSet = [];
     const request = new Request(
         query,
-        (error, rowCount) => {
-            sendDbResponse(error, rowCount, dataset, callback);
+        (error) => {
+            sendDbResponse(error, dataSet, callback);
         }
     );
     params.forEach((param) => {
@@ -21,10 +20,10 @@ const callProcedure = (query, params, callback) => {
         toJSON(columns, data);
     });
     request.on('doneInProc', (rowCount, more, rows) => {
-        dataset.push(data);
+        dataSet.push(data);
         data = [];
     });
     connection.callProcedure(request);
 };
 
-module.exports = callProcedure;
+module.exports = {callProcedure};

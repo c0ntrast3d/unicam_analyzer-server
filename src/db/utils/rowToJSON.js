@@ -1,4 +1,4 @@
-const toJSON = (columns, data) => {
+const rowToJSON = (columns, data) => {
     let result = {};
     columns.forEach((column) => {
         result[column.metadata.colName.toLowerCase()] = column.value;
@@ -6,4 +6,4 @@ const toJSON = (columns, data) => {
     data.push(result);
 };
 
-module.exports = toJSON;
+module.exports = rowToJSON;

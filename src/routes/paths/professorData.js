@@ -1,8 +1,8 @@
 const ProfessorDataRepository = require('../../repositories/professorData');
-const callProcedure = require('../../db/callProcedure');
+const dbFunctions = require('../../db/dbFunctions');
 
 module.exports = function (router) {
-    const professorDataRepository = ProfessorDataRepository(callProcedure);
+    const professorDataRepository = ProfessorDataRepository(dbFunctions);
     router.route('/professor_data')
         .get(professorDataRepository.getProfessorData);
 };

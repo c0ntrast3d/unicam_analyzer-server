@@ -1,28 +1,28 @@
-const getResponse = require('../utils/getResponse');
+const getResponse = require('../utils/getOrError');
 const procedures = require('../db/procedures');
 
 const TYPES = require('tedious').TYPES;
 
-const ProfessorDataRepository = (dbFunction) => {
+const ProfessorDataRepository = (dbFunctions) => {
     const getProfessorData = (req, res) => {
         let params = [
             {
                 name: 'MATR',
                 type: TYPES.VarChar,
-                val: '000447'
+                val: req.query.id
             },
             {
                 name: 'DaAnnoP',
                 type: TYPES.Int,
-                val: 2014
+                val: req.query.from
             },
             {
                 name: 'AAnnoP',
                 type: TYPES.Int,
-                val: 2016
+                val: req.query.to
             }
         ];
-        dbFunction(
+        dbFunctions.callProcedure(
             procedures.GET_PROFESSOR_DATA,
             params,
             function (error, data) {
