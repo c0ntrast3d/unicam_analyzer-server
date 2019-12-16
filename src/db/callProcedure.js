@@ -4,7 +4,7 @@ const sendDbResponse = require('./utils/sendResponse');
 const toJSON = require('./utils/toJSON');
 
 const callProcedure = (query, params, callback) => {
-    console.log('red', query);
+    console.log('\x1b[36m%s\x1b[0m', `callProcedure() :: query - "${query}"`);
     let data = [];
     let dataset = [];
     const request = new Request(
@@ -18,7 +18,7 @@ const callProcedure = (query, params, callback) => {
         request.addParameter(name, type, val);
     });
     request.on('row', (columns) => {
-        console.log(toJSON(columns, data))
+        toJSON(columns, data);
     });
     request.on('doneInProc', (rowCount, more, rows) => {
         dataset.push(data);

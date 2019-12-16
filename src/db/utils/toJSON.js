@@ -3,7 +3,7 @@ const toJSON = (columns, data) => {
     columns.forEach((column) => {
         result[column.metadata.colName.toLowerCase()] = column.value;
     });
-    return data.push[result];
+    data.push(result);
 };
 
 module.exports = toJSON;
