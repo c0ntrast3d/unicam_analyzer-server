@@ -17,3 +17,4 @@ const router = createRouter()
 
 server.use('/api', router)
 
+module.exports = server

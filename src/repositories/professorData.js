@@ -5,9 +5,9 @@ const TYPES = require('tedious').TYPES
 
 const ProfessorDataRepository = (dbFunctions) => {
   const getProfessorData = (req, res) => {
-    const { id, from, to } = req.query
+    const { id, from, to } = req.params
     const { VarChar, Int } = TYPES
-    let params = [
+    const params = [
       { name: 'MATR', type: VarChar, val: id },
       { name: 'DaAnnoP', type: Int, val: from },
       { name: 'AAnnoP', type: Int, val: to }

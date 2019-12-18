@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node ./src/server.js",
     "start:dev": "nodemon ./src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "standard --fix",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +22,16 @@
   "engines": {
     "node": "11.x"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "coveragePathIgnorePatterns": [
+      "/node_modules/"
+    ]
+  },
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "jest": "^24.9.0",
+    "nodemon": "^2.0.2",
+    "standard": "^14.3.1",
+    "supertest": "^4.0.2"
   }
 }

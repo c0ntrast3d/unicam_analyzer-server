@@ -1,5 +1,5 @@
 const rowToJSON = (columns, data) => {
-  let result = {}
+  const result = {}
   columns.forEach((column) => {
     result[column.metadata.colName.toLowerCase()] = column.value
   })

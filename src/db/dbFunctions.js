@@ -5,7 +5,7 @@ const toJSON = require('./utils/rowToJSON')
 
 const callProcedure = (query, params, callback) => {
   let data = []
-  let dataSet = []
+  const dataSet = []
   const request = new Request(
     query,
     (error) => {

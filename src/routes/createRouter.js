@@ -2,7 +2,9 @@ const express = require('express')
 
 const createRouter = () => {
   const router = express.Router()
-  const professorData = require('./paths/professorData')(router)
+  require('./paths/professorData')(router)
+  require('./paths/sectinData')(router)
+  require('./paths/base')(router)
   return router
 }
 
