@@ -7,6 +7,7 @@ const createRouter = () => {
     require('./paths/professorData')(router)
     require('./paths/sectionData')(router)
     require('./paths/base')(router)
+    require('./paths/dossierSummary')(router)
     return router
 }
 
