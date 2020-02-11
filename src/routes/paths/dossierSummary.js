@@ -1,8 +1,8 @@
 const DossierSummaryRepository = require('../../repositories/dossierSummary')
-const dbFunctions = require('../../db/dbFunctions')
+const transactions = require('../../db/transactions')
 
 module.exports = (router) => {
-    const dossierSummaryRepository = DossierSummaryRepository(dbFunctions)
-    router.route('/dossier_summary')
-        .get(dossierSummaryRepository.getDossierSummary)
+  const dossierSummaryRepository = DossierSummaryRepository(transactions)
+  router.route('/dossier_summary')
+    .get(dossierSummaryRepository.getDossierSummary)
 }

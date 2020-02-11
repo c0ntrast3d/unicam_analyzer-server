@@ -1,5 +1,5 @@
 const Connection = require('tedious').Connection
-const config = require('./configuration')
+const { config } = require('./configuration')
 
 const connection = new Connection(config)
 

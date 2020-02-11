@@ -19,4 +19,20 @@ const config = {
   }
 }
 
-module.exports = config
+var poolConfig = {
+  min: 1,
+  max: 8,
+  log: true
+}
+
+var poolConnectionConfig = {
+  server: DB_HOST,
+  userName: DB_USER,
+  password: DB_PASSWORD,
+  options: {
+    database: DB_DATABASE,
+    encrypt: true
+  }
+}
+
+module.exports = { config, poolConfig, poolConnectionConfig }
