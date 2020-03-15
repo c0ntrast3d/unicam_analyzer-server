@@ -6,7 +6,6 @@ const createRouter = () => {
     router.use(requireAuth)
     require('./paths/professorData')(router)
     require('./paths/sectionData')(router)
-    require('./paths/base')(router)
     require('./paths/dossierSummary')(router)
     require('./paths/availableDossiers')(router)
     return router

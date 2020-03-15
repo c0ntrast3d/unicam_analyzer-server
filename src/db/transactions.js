@@ -1,5 +1,5 @@
 const async = require('async')
-const pool = require('./connectionPool')
+const createPool = require('./connectionPool')
 const sendDbResponse = require('./utils/dbResponse')
 const toJSON = require('./utils/rowToJSON')
 const Request = require('tedious').Request
@@ -7,24 +7,24 @@ const { GET_SECTION_DATA } = require('./procedures')
 
 const TYPES = require('tedious').TYPES
 
-const getDossierSummary = (callback) => {
+const getDossierSummary = (regNumber, from, level, callback) => {
     const sections = [1, 2, 3, 4]
+    const pool = createPool()
     pool.acquire((err, connection) => {
             if (err) {
                 console.error(err)
                 return
             }
-            console.log('Connection Pool Acquired ...')
             const { VarChar, Char, Int } = TYPES
 
             const delayRun = (data, cb) => {
                 let tmp = []
                 const dataSet = []
                 const params = [
-                    { name: 'Matr', type: VarChar, val: '000447' },
+                    { name: 'Matr', type: VarChar, val: regNumber },
                     { name: '_Sez', type: Char, val: data },
-                    { name: 'Livello', type: Int, val: 2 },
-                    { name: 'DaAnno', type: Int, val: 2015 }
+                    { name: 'Livello', type: Int, val: level },
+                    { name: 'DaAnno', type: Int, val: from }
                 ]
                 const request = new Request(
                     GET_SECTION_DATA,
@@ -53,6 +53,7 @@ const getDossierSummary = (callback) => {
                 delayRun,
                 (error, result) => {
                     sendDbResponse(error, result, callback)
+                    pool.drain()
                 })
         }) // end pool.acquire
 }
